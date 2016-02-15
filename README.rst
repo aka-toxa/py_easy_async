@@ -18,7 +18,7 @@ Example of simple async operations
         return 'done'
     
     print('first')
-    easy_async.async(lambda: print_with_sleep('second'), 
+    py_easy_async.async(lambda: print_with_sleep('second'), 
                      lambda done_string: print("done callback called with string: %s" % done_string))
     print('third')
 
