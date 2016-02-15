@@ -1,8 +1,12 @@
 from setuptools import setup
 
+with open('README.rst') as file:
+    long_description = file.read()
+
 setup(name='py_easy_async',
       version='0.1',
       description='Provides simple interface for threading to easy perform async actions',
+      long_description=long_description,
       author='Petrovskyi Anatolii',
       author_email='inbox@toxa.io',
       url='https://github.com/aka-toxa/py_easy_async',
