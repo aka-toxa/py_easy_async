@@ -4,7 +4,7 @@ with open('README.rst') as file:
     long_description = file.read()
 
 setup(name='py_easy_async',
-      version='0.1.1',
+      version='0.1.2',
       description='Provides simple interface for threading to easy perform async actions',
       long_description=long_description,
       author='Petrovskyi Anatolii',

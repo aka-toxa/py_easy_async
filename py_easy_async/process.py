@@ -34,6 +34,15 @@ class Thread(threading.Thread):
 
     _stopped = False
 
+    _debug = False
+
+    def _debug_msg(self, msg):
+        if self._debug:
+            print(msg)
+
+    def set_debug(self, debug):
+        self._debug = debug
+
     def init_communications(self):
         self._messageQueue = queue.Queue()
 
@@ -50,12 +59,12 @@ class Thread(threading.Thread):
         self._stopped = True
 
     def processor(self, message):
-        print("%s: processing message" % self._name)
+        self._debug_msg("%s: processing message" % self._name)
 
         self._message_handler(message)
 
     def run(self):
-        print("%s: starting..." % self._name)
+        self._debug_msg("%s: starting..." % self._name)
 
         while not self._stopped:
             try:
@@ -64,12 +73,18 @@ class Thread(threading.Thread):
             except queue.Empty:
                 continue
 
-        print("%s: exiting..." % self._name)
+        self._debug_msg("%s: exiting..." % self._name)
 
 
 class ThreadPool:
 
     _threads = {}
+
+    def debug_thread(self, identifier):
+        self._threads[identifier].set_debug(True)
+
+    def stop_debug_thread(self, identifier):
+        self._threads[identifier].set_debug(False)
 
     def get_thread(self, identifier):
         return self._threads[identifier]
